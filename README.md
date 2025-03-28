@@ -1,1 +1,3 @@
-CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:L
+https://www.highcharts.com/download/
+https://getbootstrap.com/docs/5.3/getting-started/download/
+https://jquery.com/download/
