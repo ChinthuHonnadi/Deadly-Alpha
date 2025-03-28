@@ -1,19 +1,10 @@
-https://www.highcharts.com/download/  12.1.2
-https://www.cvedetails.com/vulnerability-list/vendor_id-20089/product_id-57014/version_id-1068435/Highcharts-Highcharts-8.2.2.html
+An attacker can brute-force API endpoints, abuse system resources, flood the database with fake entries, or perform account enumeration. This can lead to denial of service (DoS), degraded system performance, and potential data integrity issues, impacting the application's stability and availability.
 
 
+Implement Rate Limiting – Use API rate limiting mechanisms (e.g., JWT-based, IP-based, or user-based) to restrict excessive requests.
 
+Use CAPTCHA or Bot Protection – Require CAPTCHA for high-impact actions like account creation.
 
+Monitor and Log Requests – Set up alerts for unusually high request volumes.
 
-https://getbootstrap.com/docs/5.3/getting-started/download/   5.3.3
-https://www.cvedetails.com/vulnerability-list/vendor_id-19522/product_id-51406/version_id-1010413/Getbootstrap-Bootstrap-4.3.1.html
-
-
-
-
-https://jquery.com/download/   3.7.1
-https://www.cvedetails.com/vulnerability-list/vendor_id-6538/product_id-11031/version_id-1143121/Jquery-Jquery-3.2.1.html
-
-
-
-
+Apply Progressive Delays – Increase response time exponentially for repeated requests from the same source.
