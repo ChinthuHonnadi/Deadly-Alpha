@@ -7,3 +7,7 @@ Implement Output Encoding – Properly encode user-generated content before rend
 Use Content Security Policy (CSP) – Enforce a strong CSP header to restrict the execution of inline scripts and only allow trusted sources.
 
 Validate and Sanitize User Input – Strip or escape potentially dangerous characters (<, >, ", ', /, \, &, ;, (, )) before storing user input in the database. Use libraries like DOMPurify for JavaScript-based applications.
+
+
+
+An attacker can execute malicious scripts to steal authentication tokens, perform phishing attacks, force users into unintended actions, or deface the application. They can also log keystrokes, exfiltrate clipboard data, spread self-replicating XSS worms, or exploit browser vulnerabilities for further compromise.
