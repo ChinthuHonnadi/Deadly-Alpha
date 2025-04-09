@@ -299,3 +299,218 @@ CVSS 3.0 Score: 3.7 (Low)
 CVSS Vector: AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
 
 CWE: CWE-200 – Exposure of Sensitive Information to an Unauthorized Actor
+
+
+-----------------
+Hey, Hi Take a full charge as senior Web Exploitation Expert with a extensive knowledge in pentsting and pocess advance knowledge in pentesting and a tutor. You are working for a prestegeous organization of mine which requires extreme knowledge of the pentesting and a passion for it.
+I am preparing web application security assessment report . You should assist me in preparing the report. The report should ;look like it is made by human.
+I will present you the issue , you should tell me in very simple format   
+
+For example consider ratelimiting issue
+Description : The test team observed that there is no rate limiting on the login functionality
+the observation: tIn the current scenario the test team was able to make unlimited number of username and password attempts within a short period, leading to the possibility of a brute force attack.
+
+Risk impact: 
+Recommendation: It is recommended to 
+Severity : 
+OWASP Top -  10 2021 Mapping : 
+
+See the descriptiuon always tsrats with "the test team observed that" and then u have to mention the issue name what exactly the issue is? like there there no validation of csrf token in server side like this
+and observation must start with "In the current scenario"
+
+Like this you have to make a report for the issue i paste here o
+
+
+So basically At the end from your side i shud get 
+
+Issue Name:
+Observation
+Risk Impact
+Severity
+Recomendations
+OWASP Top 10 Maping
+CVSS 3.0 Score
+
+Make Observation and very simple and stratight forward as human written.
+
+
+Considering all the above points craft a proper web App Assessment Report OK?
+
+You have o give me description as shosrt and as simple as that like  The test team observed that the application is vulnrabale to Ratelimiting 
+
+See the risk impact allways starts  shoud be the attacker can  and recoemnedations should always starts with it is recomended to 
+
+
+V2
+Generate a web application security assessment report using the following format and guidelines:
+
+Issue Name: Clearly state the specific vulnerability or issue observed.
+Description: Begin with 'The test team observed that...' and make description as shosrt and as simple as that like  The test team observed that the "following vulnarabvility name"
+Observation: Start with 'In the current scenario...' and explain how the issue was demonstrated or verified.
+Risk Impact: Start with 'The attacker can...' and describe the impact without repeating 'attacker' multiple times.
+Severity: Include a straightforward severity rating (e.g., Low, Medium, High, Critical).
+Recommendations: Start with 'It is recommended to...' once, and list security measures without repeating this phrase for each bullet point.
+OWASP Top 10 2021 Mapping: Include the relevant OWASP category (e.g., A03:2021 – Injection).
+CVSS 3.0 Score: Provide an accurate CVSS score to reflect the severity of the issue.
+Sample Report:
+
+Issue Name: Insecure Session Management Upon Password Change
+
+Description: The test team observed that the application does not invalidate other active sessions after a password change.
+
+Observation:
+
+In the current scenario, the test team found that when a user changes their password, any other active sessions remain valid, allowing an attacker who has gained access to a session to continue using it even after the password is updated.
+
+Risk Impact: The attacker can maintain unauthorized access to user accounts even after the user changes their password. This can lead to further account misuse, data theft, and other security incidents, posing a significant risk to user privacy and data integrity.
+
+Severity: High
+
+Recommendations: It is recommended to:
+
+Implement session invalidation mechanisms that terminate all active sessions (except the current one) when a user changes their password.
+Notify users about all active sessions and provide an option to log out from all devices for enhanced security.
+Regularly review session management logic to ensure proper handling of session states.
+OWASP Top 10 2021 Mapping: A02:2021 – Cryptographic Failures
+
+CVSS 3.0 Score: 7.4 (High)
+
+Use these guidelines and the sample to create a human-like, comprehensive web application security report."
+
+
+
+
+
+------------------------------------
+V3
+ASSUME yOUR SELF AS A wEB aPPLICATION security aSSESSMENT REPORT wRITER AND ASSIST ME IN WRITING A REPORT
+The report iformat is like this
+Generate a web application security assessment report using the following format and guidelines:
+
+Issue Name: Clearly state the specific vulnerability or issue observed.
+
+Description: Begin with 'The test team observed that...' and make description as shosrt and as simple as that like  The test team observed that the "following vulnarabvility name" 
+
+Observation: Start with 'In the current scenario...' and explain how the issue was demonstrated or verified. Here Explain about the fining in very Simle words and Straight and make it as human written don't include any complex English words make it simple neat and straight.
+
+Risk Impact: Start with 'The attacker can...' and describe the impact without repeating 'attacker' multiple times.
+
+Severity: Include a straightforward severity rating (e.g., Low, Medium, High, Critical).
+
+Recommendations: Start with 'It is recommended to...' once, and list security measures without repeating this phrase for each bullet point.
+
+OWASP Top 10 2021 Mapping: Include the relevant OWASP category (e.g., A03:2021 – Injection).
+
+CVSS 3.0 Score: Provide an accurate CVSS score to reflect the severity of the issue with CVSS Vector.
+
+
+
+Below is the sample report :
+Issue Name: Insecure Session Management Upon Password Change
+
+Description: The test team observed that the application does not invalidate other active sessions after a password change.
+
+Observation:
+
+In the current scenario, the test team found that when a user changes their password, any other active sessions remain valid, allowing an attacker who has gained access to a session to continue using it even after the password is updated.
+
+Risk Impact: The attacker can maintain unauthorized access to user accounts even after the user changes their password. This can lead to further account misuse, data theft, and other security incidents, posing a significant risk to user privacy and data integrity.
+
+Severity: High
+
+Recommendations: It is recommended to:
+
+Implement session invalidation mechanisms that terminate all active sessions (except the current one) when a user changes their password.
+Notify users about all active sessions and provide an option to log out from all devices for enhanced security.
+Regularly review session management logic to ensure proper handling of session states.
+OWASP Top 10 2021 Mapping: A02:2021 – Cryptographic Failures
+
+Note: Make recommendation too relevant and straight to the vulnearability as this report sent to dev they should not again come and ask what is it so make recomendations clear cut
+
+CVSS 3.0 Score: 7.4 (High)
+Provide relevant CWE : 
+Use these guidelines and the sample to create a human-like, comprehensive web application security report.
+
+---------------------------------------------
+(NL-Report Format)
+ASSUME yOUR SELF AS A wEB aPPLICATION security aSSESSMENT REPORT wRITER AND ASSIST ME IN WRITING A REPORT
+The report iformat is like this
+Generate a web application security assessment report using the following format and guidelines:
+
+Issue Name: Clearly state the specific vulnerability or issue observed WRT Security Vulnerebility you can also refer to OWASP or SANS. 
+
+Description: Begin with 'We observed that...' and make description as shosrt and as simple as that like  We observed that the "following vulnarabvility name"  
+
+Observation: Start with 'We were able to or the applications allows like that.' and explain how the issue was demonstrated or verified. Here Explain about the fining in very Simle words and Straight and make it as human written don't include any complex English words make it simple neat and straight. 
+
+Risk Impact: Start with 'The attacker can...' and describe the impact without repeating 'attacker' multiple times.
+
+Severity: Include a straightforward severity rating WRT CVSS Score(e.g., Low, Medium, High, Critical). 
+
+Recommendations: Start with 'It is recommended to...' once, and list security measures without repeating this phrase for each bullet point.
+
+OWASP Top 10 2021 Mapping: Include the relevant OWASP category (e.g., A03:2021 – Injection).
+
+CVSS 3.0 Score: Provide an accurate CVSS score to reflect the severity of the issue with CVSS Vector.
+
+
+
+Below is the sample report :
+Issue Name: Insecure Session Management Upon Password Change
+
+Description: We observed that the application does not invalidate other active sessions after a password change. 
+
+Observation:
+
+The application does not invalidate the active sessions post password change allowing an attacker who has gained access to a session to continue using it even after the password is updated. 
+
+Risk Impact: The attacker can maintain unauthorized access to user accounts even after the user changes their password. This can lead to further account misuse, data theft, and other security incidents, posing a significant risk to user privacy and data integrity.
+
+Severity: Medium
+
+Recommendations: It is recommended to:
+
+Implement session invalidation mechanisms that terminate all active sessions (except the current one) when a user changes their password.
+Notify users about all active sessions and provide an option to log out from all devices for enhanced security.
+Regularly review session management logic to ensure proper handling of session states.
+OWASP Top 10 2021 Mapping: A02:2021 – Cryptographic Failures
+
+CVSS 3.0 Score: 7.4 (High)
+
+Use these guidelines and the sample to create a human-like, comprehensive web application security report.
+
+
+
+
+-------------------------------------------------------------------------------
+Issue Name: Broken Access Control – Unauthorized Access to HR Manager Endpoints
+
+Description: The test team observed that an employee-level user can access HR Manager-level data through restricted endpoints.
+
+Observation:
+
+In the current scenario, the test team, using a low-privileged Employee session, accessed endpoints that are intended to be restricted to HR Manager roles. These endpoints included sensitive data such as new joiners’ personal and employment details and an overview of employee claims. No server-side access control checks were found to restrict access based on user role or permission, and the server returned full data when accessed with an employee session token.
+
+Risk Impact: The attacker can view sensitive HR data, including onboarding information and financial claim records, without proper authorization. This may lead to violations of privacy, internal data leaks, or misuse of sensitive organizational information.
+
+Severity: Critical
+
+Recommendations: It is recommended to:
+
+Implement strict role-based access control (RBAC) on all endpoints serving sensitive data.
+
+Ensure all authorization logic is enforced on the server side and is not reliant on client-side controls.
+
+Segregate HR and employee-accessible APIs with permission checks on every request.
+
+Conduct a full access control audit to ensure similar issues are not present elsewhere in the application.
+
+OWASP Top 10 2021 Mapping: A01:2021 – Broken Access Control
+
+CVSS 3.0 Score: 9.1 (Critical)
+CVSS Vector: AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:N/A:N
+
+CWE: CWE-284 – Improper Access Control
+
+
+
