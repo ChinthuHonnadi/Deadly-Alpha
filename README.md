@@ -1,62 +1,21 @@
-✅ UPDATED ISSUE BREAKDOWN:
-1. Vertical Privilege Escalation
-CVSS v3.1: 8.8 (High)
+🔐 Broken Access Control (BAC) / Vertical Privilege Escalation
+✅ Implement strict, consistent role-based access control checks across all endpoints, especially those that access or modify sensitive data or trigger privileged actions.
 
-Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H
+🚫 Client-Side Validation Bypass
+✅ Enforce all business logic and data validation on the server side, regardless of any client-side restrictions or UI-level validations.
 
-OWASP: A01:2021 – Broken Access Control
+📄 Improper Error Handling / Verbose Stack Traces
+✅ Sanitize error responses across the application to ensure internal details such as stack traces, file paths, or server versions are never exposed to the client.
 
-2. Broken Access Control
-CVSS v3.1: 8.5 (High)
+📦 Malicious File Upload
+✅ Apply file validation, content inspection, and malware scanning consistently across all file upload features in the application.
 
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L
+🌍 Internal IP / Infrastructure Disclosure
+✅ Remove or sanitize all debug messages, server headers, and internal references across the platform to avoid disclosing sensitive infrastructure details.
 
-Rationale: Privileges are not required, but only partial integrity/availability compromise.
+📁 Metadata Exfiltration via File Uploads
+✅ Strip all metadata (EXIF, XMP, IPTC) from uploaded files across the application before rendering, processing, or storing them.
 
-OWASP: A01:2021 – Broken Access Control
+⚠️ CSRF Protections
+✅ Enforce CSRF protection tokens across all state-changing endpoints in the platform, regardless of perceived sensitivity.
 
-3. Metadata Exfiltration (No UI)
-CVSS v3.1: 6.5 (Medium)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
-
-OWASP: A01 or A06
-
-Rationale: No UI required now, so risk goes up — user just hits an endpoint and data leaks.
-
-4. Improper Error Handling
-CVSS v3.1: 3.7 (Low)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
-
-OWASP: A05 or A09
-
-5. CSRF on Logout
-CVSS v3.1: 3.1 (Low)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N
-
-OWASP: A01
-
-6. Internal IP Disclosure
-CVSS v3.1: 3.1 (Low)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
-
-OWASP: A05 or A06
-
-7. Client-Side Validation Bypass (Low)
-CVSS v3.1: 3.7 (Low)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N
-
-OWASP: A04 or A01
-
-Rationale: Only impacts integrity minimally, and attacker needs valid user access.
-
-8. Server Info Disclosure in Headers
-CVSS v3.1: 3.1 (Low)
-
-Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N
-
-OWASP: A05
