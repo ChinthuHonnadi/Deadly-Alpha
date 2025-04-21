@@ -8,3 +8,6 @@ WshShell.Run "powershell.exe", 1, false
 
 
 
+Sub AutoOpen()
+    MsgBox "Macros are enabled"
+End Sub
