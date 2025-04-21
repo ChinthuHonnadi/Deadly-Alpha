@@ -1,3 +1,10 @@
-C:\Users
-C:\
-\\127.0.0.1\c$\users\pmorgan
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "powershell.exe", 1, false
+
+<script>
+    var shell = new ActiveXObject("WScript.Shell");
+    shell.Run("powershell.exe");
+</script>
+
+
+
