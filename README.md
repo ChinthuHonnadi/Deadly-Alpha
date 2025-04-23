@@ -14,3 +14,10 @@ End Sub
 Sub AutoOpen()
     GetObject("winmgmts:root\cimv2:Win32_Process").Create "calc.exe"
 End Sub
+
+Sub AutoOpen()
+    Dim shell
+    Set shell = CreateObject("Shell.Application")
+    shell.ShellExecute "notepad.exe"
+End Sub
+
