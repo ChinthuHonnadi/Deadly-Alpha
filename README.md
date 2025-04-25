@@ -113,4 +113,41 @@ schtasks /create /tn "SwissKnifeyTask" /tr "C:\MyFolder\SwissShell.exe" /sc once
 schtasks /run /tn "SwissKnifeyTask"
 
 
+Sub ShowUserAndIP_VBScript_ShellExecute()
+    Dim shellApp As Object
+    Dim user As String
+    Dim scriptPath As String
+    Dim scriptContent As String
 
+    ' Get current username
+    user = Environ("USERNAME")
+    
+    ' Set path for the temporary VBScript file
+    scriptPath = Environ("TEMP") & "\user_ip_info.vbs"
+
+    ' VBScript content to fetch the current IP and user
+    scriptContent = "Set objNetwork = CreateObject(""WScript.Network"")" & vbCrLf
+    scriptContent = scriptContent & "strUser = objNetwork.UserName" & vbCrLf
+    scriptContent = scriptContent & "Set objShell = CreateObject(""WScript.Shell"")" & vbCrLf
+    scriptContent = scriptContent & "Set objExec = objShell.Exec(""ipconfig"")" & vbCrLf
+    scriptContent = scriptContent & "strIP = """ & vbCrLf
+    scriptContent = scriptContent & "Do While Not objExec.StdOut.AtEndOfStream" & vbCrLf
+    scriptContent = scriptContent & "    strLine = objExec.StdOut.ReadLine" & vbCrLf
+    scriptContent = scriptContent & "    If InStr(strLine, ""IPv4"") > 0 Then" & vbCrLf
+    scriptContent = scriptContent & "        strIP = Mid(strLine, InStr(strLine, "": "") + 2)" & vbCrLf
+    scriptContent = scriptContent & "    End If" & vbCrLf
+    scriptContent = scriptContent & "Loop" & vbCrLf
+    scriptContent = scriptContent & "MsgBox ""User: "" & strUser & vbCrLf & ""IP Address: "" & strIP" & vbCrLf
+
+    ' Create VBScript file
+    Dim fso As Object
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    With fso.CreateTextFile(scriptPath, True)
+        .Write scriptContent
+        .Close
+    End With
+
+    ' Use ShellExecute to run the VBScript
+    Set shellApp = CreateObject("Shell.Application")
+    shellApp.ShellExecute "wscript.exe", scriptPath, "", "open", 1
+End Sub
