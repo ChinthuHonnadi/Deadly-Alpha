@@ -252,5 +252,95 @@ Sub GetProcesses()
 End Sub
 
 
+List Domain USers
+Sub ListDomainUsers()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("SELECT * FROM Win32_UserAccount WHERE LocalAccount = FALSE")
+
+    For Each objItem In colItems
+        output = output & objItem.Name & " (" & objItem.Domain & ")" & vbCrLf
+    Next
+
+    MsgBox Left(output, 1000)
+End Sub
+
+
+Enumerate EDR/XDRS
+Sub DetectAV()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\SecurityCenter2")
+    Set colItems = objWMI.ExecQuery("SELECT * FROM AntiVirusProduct")
+
+    For Each objItem In colItems
+        output = output & objItem.displayName & " - Enabled: " & objItem.productEnabled & vbCrLf
+    Next
+
+    MsgBox output
+End Sub
+
+
+
+Network Shares
+Sub ListMappedDrives()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("SELECT * FROM Win32_LogicalDisk WHERE DriveType = 4")
+
+    For Each objItem In colItems
+        output = output & "Mapped Drive: " & objItem.DeviceID & " - " & objItem.ProviderName & vbCrLf
+    Next
+
+    MsgBox output
+End Sub
+
+
+Sub RunKlistAndCaptureOutput()
+    Dim objWMI As Object
+    Dim ProcessID As Variant
+    Dim returnCode As Variant
+    Dim fso As Object
+    Dim file As Object
+    Dim outputPath As String
+    Dim outputText As String
+    Dim waitTime As Date
+
+    outputPath = "C:\MyFolder\klist_out.txt"
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+
+    ' Launch klist and redirect output to file
+    objWMI.Get("Win32_Process").Create "C:\Windows\System32\klist.exe > " & outputPath, Null, Null, ProcessID
+
+    ' Wait 3 seconds for output to complete
+    waitTime = Now + TimeValue("00:00:03")
+    Do While Now < waitTime
+        DoEvents
+    Loop
+
+    ' Read file content
+    Set fso = CreateObject("Scripting.FileSystemObject")
+
+    If fso.FileExists(outputPath) Then
+        Set file = fso.OpenTextFile(outputPath, 1)
+        outputText = file.ReadAll
+        file.Close
+        MsgBox Left(outputText, 1000), vbInformation, "KLIST Output"
+    Else
+        MsgBox "Output file not found!"
+    End If
+End Sub
 
 
