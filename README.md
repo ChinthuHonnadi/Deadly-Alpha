@@ -150,4 +150,107 @@ Sub ShowUserAndIP_VBScript_ShellExecute()
     ' Use ShellExecute to run the VBScript
     Set shellApp = CreateObject("Shell.Application")
     shellApp.ShellExecute "wscript.exe", scriptPath, "", "open", 1
+End Sub\
+
+
+
+
+
+
+
+
+1. Enumerate environment info from within VBA
+Sub AutoOpen()
+    Dim msg As String
+    msg = "Username: " & Environ("USERNAME") & vbCrLf
+    msg = msg & "Computer: " & Environ("COMPUTERNAME") & vbCrLf
+    msg = msg & "Domain: " & Environ("USERDOMAIN") & vbCrLf
+    msg = msg & "HomeDrive: " & Environ("HOMEDRIVE") & vbCrLf
+    msg = msg & "Temp: " & Environ("TEMP") & vbCrLf
+    MsgBox msg, vbInformation, "System Info"
 End Sub
+
+✅ 2. Use WMI in VBA to get system info – no cmd.exe needed!
+
+Sub GetIP()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = TRUE")
+
+    For Each objItem In colItems
+        If Not IsNull(objItem.IPAddress) Then
+            output = output & "IP: " & objItem.IPAddress(0) & vbCrLf
+        End If
+    Next
+
+    MsgBox output
+End Sub
+
+✅ 3. Get more system info from WMI:
+Sub GetSysInfo()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("Select * from Win32_OperatingSystem")
+
+    For Each objItem In colItems
+        output = "OS Name: " & objItem.Caption & vbCrLf
+        output = output & "Version: " & objItem.Version & vbCrLf
+        output = output & "Architecture: " & objItem.OSArchitecture & vbCrLf
+        output = output & "Total RAM: " & Format(objItem.TotalVisibleMemorySize / 1024, "0") & " MB" & vbCrLf
+        output = output & "Free RAM: " & Format(objItem.FreePhysicalMemory / 1024, "0") & " MB" & vbCrLf
+    Next
+
+    MsgBox output
+End Sub
+
+✅ 4. Get currently logged in users:
+Sub WhoAmI()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("Select * from Win32_ComputerSystem")
+
+    For Each objItem In colItems
+        output = "User: " & objItem.UserName & vbCrLf
+        output = output & "Domain: " & objItem.Domain & vbCrLf
+        output = output & "Name: " & objItem.Name & vbCrLf
+    Next
+
+    MsgBox output
+End Sub
+
+🔥🔥🔥 BONUS: List All Running Processes (Like tasklist Without tasklist.exe)
+vba
+Copy
+Edit
+
+Sub GetProcesses()
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    Set colItems = objWMI.ExecQuery("Select * from Win32_Process")
+
+    For Each objItem In colItems
+        output = output & objItem.Name & vbCrLf
+    Next
+
+    MsgBox Left(output, 1000) ' Show first 1000 characters
+End Sub
+
+
+
+
