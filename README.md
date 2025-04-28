@@ -523,6 +523,137 @@ End Sub
 
 
 
+Citrix Breakout 
+Description:
+The test team observed that the application allowed unauthorized command execution through macro abuse and WMI from within the Citrix-published environment.
+________________________________________
+Observation:
+In the current scenario, the test team found that by embedding WMI-based execution logic inside a Microsoft Word macro, it was possible to launch system-level processes such as systeminfo.exe, klist.exe, and ipconfig.exe directly from the restricted Citrix application. The macro executed WMI queries using Win32_Process.Create, enabling command execution without access to cmd.exe, powershell.exe, or other scripting engines. This was achieved without uploading any files or requiring administrator privileges.
+________________________________________
+Risk Impact:
+The attacker can execute arbitrary operating system commands, gather sensitive system information, identify domain infrastructure, enumerate logged-in users, map network drives, and potentially extend access to additional systems through lateral movement, despite Citrix restrictions. This bypass of the Citrix sandbox significantly compromises the isolation model expected in secure Citrix deployments.
+________________________________________
+Severity: Critical
+________________________________________
+Recommendations:
+It is recommended to:
+•	Restrict Microsoft Office macro execution within Citrix-published applications by disabling macros unless digitally signed and vetted.
+•	Implement strict AppLocker or Windows Defender Application Control (WDAC) policies to prevent WMI execution abuse through Win32_Process.Create.
+•	Configure Citrix session policies to block or limit access to environment variables, filesystem browsing, and process creation where possible.
+•	Monitor and restrict the use of WMI-based process creation activities, and trigger alerts on suspicious child processes spawned by Office applications.
+•	Review application publishing models and enforce the principle of least privilege for published applications to minimize available attack surfaces.
+________________________________________
+OWASP Top 10 2021 Mapping: A05:2021 – Security Misconfiguration
+________________________________________
+CVSS 3.1 Score: 9.1 (Critical)
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L
+________________________________________
+Relevant CWE:
+•	CWE-269: Improper Privilege Management
+ 
+Insecure File System Permissions
+Description:
+The test team observed that the application allowed unauthorized creation of folders and files in the root of the C: drive within the Citrix-published environment.
+________________________________________
+Observation:
+In the current scenario, the test team found that it was possible to create a new folder on the C: drive and subsequently create files and subfolders inside that folder. 
+The test team was also able to view sensitive files in system directories and browse critical paths, and it was also possible to create .bat and .vbs files within the writable folder, posing a risk if any privileged process later executes files from these locations.
+________________________________________
+Risk Impact:
+The attacker can create files and scripts on the system drive, potentially leading to persistence mechanisms if privileged processes inadvertently access these locations. The ability to browse sensitive system files can assist in reconnaissance activities, giving insight into installed applications, configurations, and network settings. Over time, this can enable privilege escalation or lateral movement attempts.
+________________________________________
+Severity: High
+________________________________________
+Recommendations:
+It is recommended to:
+•	Restrict write permissions on the root of the C: drive and ensure that users are only permitted to write in designated, isolated directories such as their user profile folder.
+•	Apply strict file system access control lists (ACLs) that prevent unauthorized folder creation outside of allowed user-specific areas.
+•	Implement AppLocker or Windows Defender Application Control (WDAC) policies to block execution of .bat, .vbs, and other potentially dangerous script files from user-writable locations.
+•	Regularly review published application permissions and access rights to minimize the risk of file system misuse.
+•	Monitor for the creation of unexpected folders or executable files in sensitive directories, triggering alerts when such activities occur.
+________________________________________
+OWASP Top 10 2021 Mapping: A04:2021 – Insecure Design
+________________________________________
+CVSS 3.1 Score: 7.7 (High)
+CVSS Vector: CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L
+________________________________________
+Relevant CWE:
+•	CWE-732: Incorrect Permission Assignment for Critical Resource
+
+ 
+Partial Arbitrary Application Execution
+Description:
+The test team observed that the application allowed execution of certain system and user-installed applications from within the restricted Citrix-published environment.
+________________________________________
+Observation:
+In the current scenario, the test team found that it was possible to launch multiple system binaries and user applications such as klist.exe, notepad.exe, mspaint.exe, Microsoft Word, and Adobe Acrobat Reader directly from within the Citrix-published application.
+
+Risk Impact:
+The attacker can leverage accessible system applications to gather information about the system, manipulate files, or maintain a foothold inside the Citrix session. Readily available applications like notepad.exe and paint.exe can assist in creating files, documenting sensitive data, or exfiltrating information. More critically, access to tools like klist.exe can reveal Kerberos ticket information, assisting in lateral movement or impersonation attacks within the internal network.
+________________________________________
+Severity: High
+________________________________________
+Recommendations:
+It is recommended to:
+•	Restrict the execution of unnecessary system and third-party binaries by implementing a strict application allowlisting policy using AppLocker or Windows Defender Application Control (WDAC).
+•	Review the list of published applications and permitted binaries to ensure that only explicitly required executables are available to users.
+•	Configure Citrix policies to isolate and sandbox published applications more tightly, preventing invocation of unintended processes.
+•	Monitor for suspicious process execution from within Citrix sessions and trigger alerts for any unauthorized application launches.
+•	Conduct regular access control reviews to ensure minimal exposure of system utilities and administration tools.
+________________________________________
+OWASP Top 10 2021 Mapping: A05:2021 – Security Misconfiguration
+________________________________________
+CVSS 3.1 Score: 8.2 (High)
+CVSS Vector: CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:L
+________________________________________
+Relevant CWE:
+•	CWE-284: Improper Access Control
+ 
+SMB Shares and Information Disclosure
+Description:
+The test team observed that the application allowed unauthorized creation of memory dump files, which when analyzed, revealed hardcoded SMB share paths containing sensitive organizational data.
+________________________________________
+Observation:
+In the current scenario, the test team created a memory dump of the Citrix-published application process using Task Manager. Upon analyzing the dump manually, a hardcoded SMB network share path was identified. The test team accessed the referenced SMB share directly and found sensitive internal files, such as organizational policies and configuration documents, available without any additional authentication prompts.
+
+Need to be updated from Kiran’s Report-----
+
+
+ 
+Improper Input Validation 
+--- Should be Updated from Kiran’s Report
+Description:
+The test team observed that the application did not properly validate or sanitize user-supplied input, allowing special characters such as < and > to be submitted without restrictions.
+________________________________________
+Observation:
+In the current scenario, the test team found that it was possible to submit input containing special characters like <, >, and other potentially dangerous symbols without any validation or sanitization. 
+Risk Impact:
+The attacker can inject malicious content, leading to Cross-Site Scripting (XSS) attacks, unauthorized access, session hijacking, redirection to malicious sites, or backend manipulation. This can compromise user accounts, application functionality, and sensitive data integrity.
+________________________________________
+Severity: High
+________________________________________
+Recommendations:
+It is recommended to:
+•	Implement strict input validation throughout the application wherever user input is accepted, ensuring that only expected characters and formats are allowed.
+•	Encode or sanitize user inputs before reflecting them in HTML, JavaScript, or database queries to prevent injection attacks.
+•	Apply output encoding consistently when displaying user-supplied data back to users.
+•	Use server-side validation in addition to client-side validation to ensure strong enforcement.
+•	Review all existing input fields, APIs, and forms across the application and correct any missing or insufficient validation checks.
+OWASP Top 10 2021 Mapping: A03:2021 – Injection
+________________________________________
+CVSS 3.1 Score: 7.4 (High)
+CVSS Vector: CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L
+________________________________________
+Relevant CWE:
+•	CWE-20: Improper Input Validation
+
+
+
+
+
+
+
+
 
 strings.exe -nobanner -accepteula -q -n 4 -u C:\MyFolder\yourdump.dmp | findstr /i /c:"password" /c:"pwd=" /c:"token" /c:"bearer" /c:"authorization:" /c:"cookie" /c:"set-cookie" /c:"sessionid" /c:"api_key" /c:"db_username" /c:"db_password" /c:"ldap" /c:"cifs/" /c:"smb://" /c:"uncpath" /c:"file://" /c:"vpn" /c:"private key" /c:"logonserver" > C:\MyFolder\loot.txt
 
