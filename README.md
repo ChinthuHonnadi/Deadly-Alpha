@@ -344,3 +344,9 @@ Sub RunKlistAndCaptureOutput()
 End Sub
 
 
+
+
+strings.exe -nobanner -accepteula -q -o path\to\dumpfile.dmp | findstr /i /c:"password" /c:"pwd=" /c:"token" /c:"bearer" /c:"authorization:" /c:"cookie" /c:"set-cookie" /c:"sessionid" /c:"api_key" /c:"db_username" /c:"db_password" /c:"ldap" /c:"cifs/" /c:"smb://" /c:"domain" /c:"logonserver" /c:"vpn" /c:"private key" > path\to\loot.txt
+
+
+
