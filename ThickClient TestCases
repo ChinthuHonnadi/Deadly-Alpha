@@ -1,0 +1,22 @@
+| **S.No** | **Test Case**                                          | **Status** |
+|---------:|---------------------------------------------------------|------------|
+| 1        | Test for Dialogue Box Abuse                              | **Unsafe** |
+| 3        | Test for Command Execution                               | **Unsafe** |
+| 5        | Test for Arbitrary File/Application Execution            | **Unsafe** |
+| 6        | Test for Writable Files/Directory                        | **Unsafe** |
+| 7        | Test for Writing Files to System Folders                 | **Safe**   |
+| 10       | Test for Modifying ICA Files                             | **Safe**   |
+| 11       | Test for Environmental Variable Exposure                 | **Unsafe** |
+| 12       | Test for Accessing Sensitive Paths/Files                 | **Unsafe** |
+| 13       | Test for Sensitive data in Memory Dumping                | **Unsafe** |
+| 17       | Test for Input Validation                                | **Unsafe** |
+| 18       | Test for Internet Access / External Callouts             | **Safe**   |
+| 19       | Test for File Transfer into the Environment              | **Safe**   |
+| 20       | Test for File Exfiltration Out of the Environment        | **Safe**   |
+| 24       | Test for System Enumeration via System Binaries          | **Unsafe** |
+| 25       | Test for Execution of CMD/PowerShell                     | **Safe**   |
+Test for Improper Input Validation (<, >, etc.)	Input Validation	Unsafe
+Test for  SQL Injection 
+Test for Improper Error Handling (crashes, debug traces)
+Test for Default or Weak Local Credentials
+Test for Registry Key Hijack / Weak Permissions
