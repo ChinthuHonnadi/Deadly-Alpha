@@ -149,7 +149,7 @@ Direct exposure of credentials = high confidentiality impact, thus raising the o
 
 
 
-The application exposed hardcoded backend database credentials, which poses a significant security risk and could lead to unauthorized access or a potential data breach
+Twhere hardcoded backend database credentials were exposed, posing a significant security risk that could lead to unauthorized access or a potential data breach.
 
 
 The test team first captured a valid request, then logged out from the application.
