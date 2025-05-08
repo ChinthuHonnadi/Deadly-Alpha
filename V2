@@ -1,0 +1,119 @@
+Sensitive Information Disclosure in Application Response
+The test team observed that the application discloses sensitive backend configuration details in its HTTP responses.
+
+In the current scenario, the test team found that the server's response included hardcoded database connection details and private IP addresses. The response revealed values such as:
+
+datasource=10.202.xx.xx\\mssqlserver2019;initialcatalog=INDUS-controller;userid=indb;password=in@fdfxxxx;connectiontimeout=600
+
+cpservername=<privateip>
+
+This kind of information exposure can help an attacker understand backend infrastructure and target internal systems.
+Risk Impact:
+The attacker can use the leaked credentials or internal IP information to attempt unauthorized access to databases or internal systems, potentially leading to data breaches, lateral movement, or infrastructure compromise.
+
+Severity: Medium
+Recommendations:
+It is recommended to:
+
+Remove all hardcoded sensitive information (such as database credentials and server addresses) from HTTP responses.
+
+Ensure debug messages, configuration details, and internal variables are not exposed in any API or UI layer.
+
+Store configuration and secrets in environment variables or a secure secrets manager (e.g., HashiCorp Vault, AWS Secrets Manager).
+CVSS 3.1 Score: 5.3 (Medium)
+CVSS Vector: AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N
+
+Relevant CWE: CWE-200: Exposure of Sensitive Information to an Unauthorized Actor.
+--------------------------------------
+Issue Name: Improper Session Invalidation After Logout
+Description:
+The test team observed that the application fails to invalidate session tokens after a user logs out.
+
+Observation:
+In the current scenario, the test team captured a valid request before logging out and then logged out from the application. After that, the same captured request was replayed using the old session cookie. The request was still accepted, and the action was successfully performed, which indicates that the session remained valid even after the user logged out.
+
+Risk Impact:
+The attacker can continue to use a previously captured session cookie to perform unauthorized actions on behalf of the user even after logout. This breaks the session lifecycle and can lead to account misuse, data access, and other unauthorized activities.
+
+Severity: Medium
+Recommendations:
+It is recommended to:
+
+Invalidate the session token immediately upon logout on the server-side to ensure it cannot be reused.
+
+Implement server-side session tracking mechanisms (e.g., session store or token revocation lists) that properly expire or destroy sessions once a user logs out.
+CVSS 3.1 Score: 6.5 (Medium)
+CVSS Vector: AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:L
+
+Relevant CWE: CWE-613: Insufficient Session Expiration
+-----------------------------------------------------------------------------------
+Issue Name: Misconfigured Content Security Policy.
+Description:
+The test team observed that the application has an incomplete Content Security Policy (CSP) implementation
+Observation:
+In the current scenario, the test team found that the Content Security Policy header is present but only includes frame-ancestors 'self'. Other critical directives like script-src, object-src, or default-src are missing. This partial implementation offers limited protection and fails to fully mitigate client-side threats like cross-site scripting or resource injection.
+
+Risk Impact:
+The attacker can exploit missing CSP directives to load malicious scripts, if any XSS vector is later found, or embed unexpected content. It reduces the application's defense-in-depth posture and leaves it partially exposed to client-side attacks.
+
+Severity: Low
+Recommendations:
+It is recommended to:
+
+Define a complete CSP policy that includes at least the following directives: default-src, script-src, style-src, img-src, object-src, and connect-src.
+
+Use strict CSP rules to control which sources are allowed for scripts, styles, images, and other content.
+
+Set the report-uri or report-to directive to monitor policy violations in a controlled environment.
+CVSS 3.1 Score: 3.1 (Low)
+CVSS Vector: AV:N/AC:L/PR:N/UI:R/S:C/C:N/I:L/A:N
+
+Relevant CWE: CWE-693: Protection Mechanism Failure
+-------------------------------
+Issue Name: Cross-Site Request Forgery (CSRF) on Logout.
+Description:
+The test team observed that the logout functionality is vulnerable to CSRF.
+
+Observation:
+In the current scenario, the test team captured the logout request and crafted a CSRF link using the same request format. When an authenticated user clicks on this link, they are forcefully logged out of the application without any user confirmation or protection mechanism like a CSRF token.
+
+Risk Impact:
+The attacker can log a user out of the application without their consent, leading to a minor disruption of user experience. Although no sensitive action is performed, it could be used in a chain of attacks to annoy users or interrupt sessions.
+
+Severity: Low
+Recommendations:
+It is recommended to:
+Implement CSRF protection tokens for the logout endpoint to ensure the request originates from the legitimate site.
+Change the logout method from GET to POST to make it less susceptible to drive-by CSRF attacks.
+Apply these protections wherever state changes are triggered by user interaction (e.g., profile updates, form submissions).
+
+CVSS 3.1 Score: 3.1 (Low)
+CVSS Vector: AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:L
+
+Relevant CWE: CWE-352: Cross-Site Request Forgery (CSRF)
+------------------------------------------------------------
+Issue Name: Insecure Cookie Attributes – SameSite Flag Not Set
+Description:
+The test team observed that the application does not set the SameSite attribute on its cookies.
+
+Observation:
+In the current scenario, the test team found that the session cookies are missing the SameSite attribute. This allows the cookies to be sent in cross-site requests, which can be exploited in CSRF attacks or other cross-origin request scenarios.
+
+Risk Impact:
+The attacker can exploit the missing SameSite flag to abuse authenticated sessions by tricking users into performing unintended actions via cross-site requests, leading to session misuse or privilege abuse.
+
+Severity: Low
+Recommendations:
+It is recommended to:
+
+Set the SameSite attribute for all cookies that hold session or sensitive data.
+
+Use SameSite=Strict for cookies that should never be sent in cross-origin requests.
+
+Use SameSite=Lax if some cross-site GET requests (e.g., links) are valid but still want to prevent most CSRF attacks.
+
+Use SameSite=None; Secure only if the cookie is intended to be sent in third-party contexts (e.g., if using cross-site iframes), and ensure it’s accompanied by the Secure flag.
+CVSS 3.1 Score: 3.1 (Low)
+CVSS Vector: AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:L
+
+Relevant CWE: CWE-1275: Sensitive Cookie Without 'SameSite' Attribute
