@@ -146,3 +146,10 @@ The presence of hardcoded database credentials and internal IPs in the response 
 If an attacker leverages this info for lateral movement or backend exploitation, the impact could be significant.
 
 Direct exposure of credentials = high confidentiality impact, thus raising the overall severity.
+
+
+
+The application exposed hardcoded backend database credentials, which poses a significant security risk and could lead to unauthorized access or a potential data breach
+
+
+The test team first captured a valid request, then logged out from the application.
