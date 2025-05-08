@@ -117,3 +117,32 @@ CVSS 3.1 Score: 3.1 (Low)
 CVSS Vector: AV:N/AC:L/PR:L/UI:R/S:U/C:N/I:N/A:L
 
 Relevant CWE: CWE-1275: Sensitive Cookie Without 'SameSite' Attribute
+---------------
+
+✅ Updated OWASP Mapping for Improper Session Management:
+OWASP Top 10 2021 Mapping:
+A07:2021 – Identification and Authentication Failures
+Explanation: This vulnerability relates directly to improper handling of session state, token invalidation, and replay protection, all of which fall under this category in OWASP's 2021 list.
+
+✅ Updated Severity and CVSS for Sensitive Information Disclosure:
+Previously:
+
+Severity: Medium
+
+CVSS 3.1 Score: 5.3 (Medium)
+
+Now Updated To:
+
+Issue Name: Sensitive Information Disclosure in Application Response
+Severity: High
+
+Updated CVSS 3.1 Score: 7.5 (High)
+CVSS Vector: AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N
+
+Rationale for Upgrade:
+
+The presence of hardcoded database credentials and internal IPs in the response poses a severe risk.
+
+If an attacker leverages this info for lateral movement or backend exploitation, the impact could be significant.
+
+Direct exposure of credentials = high confidentiality impact, thus raising the overall severity.
